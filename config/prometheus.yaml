@@ -7,6 +7,15 @@ global:
   # external_labels:
   #  monitor: 'codelab-monitor'
 
+rule_files:
+  - "alert.rules.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
@@ -29,4 +38,8 @@ scrape_configs:
   # Example job for custom metric
   - job_name: "monitor-service"
     static_configs:
-      - targets: ["host.docker.internal:8000"]
+      - targets: ["localhost:8000"]
+
+  - job_name: "alertmanager"
+    static_configs:
+      - targets: ["alertmanager:9093"]
