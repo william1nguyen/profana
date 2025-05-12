@@ -38,7 +38,7 @@ scrape_configs:
   # Example job for custom metric
   - job_name: "monitor-service"
     static_configs:
-      - targets: ["localhost:8000"]
+      - targets: ["host.docker.internal:8000"]
 
   - job_name: "alertmanager"
     static_configs:
